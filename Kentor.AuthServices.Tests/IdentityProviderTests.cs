@@ -32,6 +32,7 @@ namespace Kentor.AuthServices.Tests
         [TestInitialize]
         public void Initialize()
         {
+            Options.GlobalEnableSha256XmlSignatures();
             currentPrincipal = Thread.CurrentPrincipal;
         }
 
@@ -43,6 +44,7 @@ namespace Kentor.AuthServices.Tests
             StubServer.IdpVeryShortCacheDurationIncludeKey = true;
             MetadataRefreshScheduler.minInterval = refreshMinInterval;
             Thread.CurrentPrincipal = currentPrincipal;
+            SignedXmlHelper.RemoveGlobalSha256XmlSignatureSupport();
         }
 
         [TestMethod]

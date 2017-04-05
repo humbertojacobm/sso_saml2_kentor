@@ -69,6 +69,7 @@ namespace Kentor.AuthServices.Tests
         [TestMethod]
         public void XmlHelpers_Sign()
         {
+            Options.GlobalEnableSha256XmlSignatures();
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml("<root ID=\"rootElementId\"><content>Some Content</content></root>");
 
@@ -341,6 +342,7 @@ namespace Kentor.AuthServices.Tests
         [TestMethod]
         public void XmlHelpers_IsSignedBy_HandlesMultipleSignaturesInSameDocument()
         {
+            Options.GlobalEnableSha256XmlSignatures();
             var content1 = SignedXmlHelper.SignXml("<content ID=\"c1\" />");
             var content2 = SignedXmlHelper.SignXml("<content ID=\"c2\" />");
 
@@ -424,6 +426,7 @@ $@"<xml>
         [TestMethod]
         public void XmlHelpers_IsSignedBy_ChecksDigestAlgorithmStrength()
         {
+            Options.GlobalEnableSha256XmlSignatures();
             var xml = "<xml ID=\"MyXml\" />";
 
             var xmlDoc = XmlHelpers.FromString(xml);
@@ -455,6 +458,7 @@ $@"<xml>
         [TestMethod]
         public void XmlHelpers_IsSignedByAny_ThrowsOnCertValidationWithRsaKey()
         {
+            Options.GlobalEnableSha256XmlSignatures();
             var xml = "<xml ID=\"MyXml\" />";
 
             var xmlDoc = XmlHelpers.FromString(xml);

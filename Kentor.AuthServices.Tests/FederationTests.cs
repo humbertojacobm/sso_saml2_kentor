@@ -17,6 +17,12 @@ namespace Kentor.AuthServices.Tests
     {
         TimeSpan refreshMinInterval = MetadataRefreshScheduler.minInterval;
 
+        [TestInitialize]
+        public void Initialize()
+        {
+            Options.GlobalEnableSha256XmlSignatures();
+        }
+
         [TestCleanup]
         public void Cleanup()
         {
@@ -24,6 +30,7 @@ namespace Kentor.AuthServices.Tests
             StubServer.FederationVeryShortCacheDurationSecondAlternativeEnabled = false;
             StubServer.IdpAndFederationShortCacheDurationAvailable = true;
             MetadataRefreshScheduler.minInterval = refreshMinInterval;
+            SignedXmlHelper.RemoveGlobalSha256XmlSignatureSupport();
         }
 
         [TestMethod]
