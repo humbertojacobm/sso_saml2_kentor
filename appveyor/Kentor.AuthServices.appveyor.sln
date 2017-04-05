@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kentor.AuthServices", "Kentor.AuthServices\Kentor.AuthServices.csproj", "{93BA675E-A159-4701-B68B-C4B81015C556}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kentor.AuthServices", "..\Kentor.AuthServices\Kentor.AuthServices.csproj", "{93BA675E-A159-4701-B68B-C4B81015C556}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0C4834E-A7A9-476F-8F46-B2D533190872}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		VersionInfo.cs = VersionInfo.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kentor.AuthServices.Tests", "Kentor.AuthServices.Tests\Kentor.AuthServices.Tests.csproj", "{D3334615-C970-464F-8F45-50CB53A5C0EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kentor.AuthServices.Tests", "..\Kentor.AuthServices.Tests\Kentor.AuthServices.Tests.csproj", "{D3334615-C970-464F-8F45-50CB53A5C0EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{DB9690FA-2519-4D70-A831-2D6705842721}"
 	ProjectSection(SolutionItems) = preProject
@@ -38,9 +38,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{8EE1C45E
 		nuget\ReleaseNotes.txt = nuget\ReleaseNotes.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kentor.AuthServices.Mvc", "Kentor.AuthServices.Mvc\Kentor.AuthServices.Mvc.csproj", "{7D32F0A3-CEC8-4DC6-A096-5905EA9C3770}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kentor.AuthServices.Mvc", "..\Kentor.AuthServices.Mvc\Kentor.AuthServices.Mvc.csproj", "{7D32F0A3-CEC8-4DC6-A096-5905EA9C3770}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kentor.AuthServices.Owin", "Kentor.AuthServices.Owin\Kentor.AuthServices.Owin.csproj", "{FA1E7723-124C-4D2D-A731-E16400B0073B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kentor.AuthServices.Owin", "..\Kentor.AuthServices.Owin\Kentor.AuthServices.Owin.csproj", "{FA1E7723-124C-4D2D-A731-E16400B0073B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kentor.AuthServices.HttpModule", "Kentor.AuthServices.HttpModule\Kentor.AuthServices.HttpModule.csproj", "{86A588E8-2E2D-4394-9545-24D8EA939CF2}"
 EndProject
