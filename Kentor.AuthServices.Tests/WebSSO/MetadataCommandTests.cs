@@ -13,6 +13,7 @@ using Kentor.AuthServices.WebSso;
 using Kentor.AuthServices.Tests.Helpers;
 using System.Security.Cryptography.Xml;
 using Kentor.AuthServices.Metadata;
+using System.Security.Cryptography;
 
 namespace Kentor.AuthServices.Tests.WebSso
 {
@@ -32,8 +33,10 @@ namespace Kentor.AuthServices.Tests.WebSso
         HttpRequestData request = new HttpRequestData("GET", new Uri("http://localhost"));
 
         [TestMethod]
-        public void MetadataCommand_Run_CompleteMetadata()
+        public void MetadataCommand_Run_CompleteMetadata_Sha384()
         {
+            if ( CryptoConfig.CreateFromName( AlgorithmConstants.XmlDsigRSASHA384Url ) == null ) return;
+
             var options = StubFactory.CreateOptions();
             options.SPOptions.DiscoveryServiceUrl = new Uri("http://ds.example.com");
             options.SPOptions.AuthenticateRequestSigningBehavior = SigningBehavior.Always;

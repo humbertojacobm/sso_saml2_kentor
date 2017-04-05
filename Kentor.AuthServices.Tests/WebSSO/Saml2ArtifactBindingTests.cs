@@ -15,12 +15,26 @@ using Kentor.AuthServices.Internal;
 using System.Reflection;
 using Kentor.AuthServices.Tests.Helpers;
 using System.Xml;
+using Kentor.AuthServices.Configuration;
 
 namespace Kentor.AuthServices.Tests.WebSSO
 {
     [TestClass]
     public class Saml2ArtifactBindingTests
     {
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            Options.GlobalEnableSha256XmlSignatures();
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            SignedXmlHelper.RemoveGlobalSha256XmlSignatureSupport();
+        }
+
         [TestMethod]
         public void Saml2ArtifactBinding_CanUnbind_Nullcheck()
         {

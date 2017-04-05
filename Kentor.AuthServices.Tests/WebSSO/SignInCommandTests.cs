@@ -7,12 +7,25 @@ using Kentor.AuthServices.Configuration;
 using System.IdentityModel.Metadata;
 using Kentor.AuthServices.WebSso;
 using System.Collections.Generic;
+using Kentor.AuthServices.Tests.Helpers;
 
 namespace Kentor.AuthServices.Tests.WebSso
 {
     [TestClass]
     public class SignInCommandTests
     {
+        [TestInitialize]
+        public void Initialize()
+        {
+            Options.GlobalEnableSha256XmlSignatures();
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            SignedXmlHelper.RemoveGlobalSha256XmlSignatureSupport();
+        }
+
         [TestMethod]
         public void SignInCommand_Run_ReturnsAuthnRequestForDefaultIdp()
         {

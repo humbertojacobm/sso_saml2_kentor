@@ -13,12 +13,25 @@ using Kentor.AuthServices.Tests.WebSSO;
 using Kentor.AuthServices.Tests.Helpers;
 using System.Security.Cryptography.Xml;
 using NSubstitute;
+using Kentor.AuthServices.Configuration;
 
 namespace Kentor.AuthServices.Tests.WebSso
 {
     [TestClass]
     public class Saml2PostBindingTests
     {
+        [TestInitialize]
+        public void Initialize()
+        {
+            Options.GlobalEnableSha256XmlSignatures();
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            SignedXmlHelper.RemoveGlobalSha256XmlSignatureSupport();
+        }
+
         private HttpRequestData CreateRequest(string encodedResponse, string relayState = null)
         {
             var formData = new List<KeyValuePair<string, string[]>>()

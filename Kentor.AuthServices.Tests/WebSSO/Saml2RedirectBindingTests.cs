@@ -13,12 +13,25 @@ using System.Xml;
 using System.IdentityModel.Metadata;
 using Kentor.AuthServices.Exceptions;
 using System.Security.Cryptography.Xml;
+using Kentor.AuthServices.Configuration;
 
 namespace Kentor.AuthServices.Tests.WebSso
 {
     [TestClass]
     public class Saml2RedirectBindingTests
     {
+        [TestInitialize]
+        public void Initialize()
+        {
+            Options.GlobalEnableSha256XmlSignatures();
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            SignedXmlHelper.RemoveGlobalSha256XmlSignatureSupport();
+        }
+
         [TestMethod]
         public void Saml2RedirectBinding_Bind_Nullcheck()
         {

@@ -26,6 +26,18 @@ namespace Kentor.AuthServices.Tests.WebSso
     [TestClass]
     public class AcsCommandTests
     {
+        [TestInitialize]
+        public void Initialize()
+        {
+            Options.GlobalEnableSha256XmlSignatures();
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            SignedXmlHelper.RemoveGlobalSha256XmlSignatureSupport();
+        }
+
         [TestMethod]
         public void AcsCommand_Run_NullCheckRequest()
         {

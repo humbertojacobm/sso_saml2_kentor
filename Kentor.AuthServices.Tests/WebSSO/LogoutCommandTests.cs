@@ -26,6 +26,19 @@ namespace Kentor.AuthServices.Tests.WebSSO
     [TestClass]
     public class LogoutCommandTests
     {
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            Options.GlobalEnableSha256XmlSignatures();
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            SignedXmlHelper.RemoveGlobalSha256XmlSignatureSupport();
+        }
+
         private IPrincipal principal;
 
         [TestInitialize]
