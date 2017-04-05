@@ -1415,7 +1415,7 @@ namespace Kentor.AuthServices.Tests.Saml2P
             var response = Saml2Response.Read(responseXML, null);
 
             var options = StubFactory.CreateOptions();
-            options.SPOptions.MinIncomingSigningAlgorithm = SignedXml.XmlDsigRSASHA512Url;
+            options.SPOptions.MinIncomingSigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA512Url;
 
             Action a = () =>
             {
@@ -1805,7 +1805,7 @@ namespace Kentor.AuthServices.Tests.Saml2P
         {
             var subject = new Saml2Response(new EntityId("issuer"), SignedXmlHelper.TestCert, null, null);
 
-            subject.SigningAlgorithm.Should().Be(SignedXml.XmlDsigRSASHA256Url);
+            subject.SigningAlgorithm.Should().Be(AlgorithmConstants.XmlDsigRSASHA256Url);
         }
 
         [TestMethod]

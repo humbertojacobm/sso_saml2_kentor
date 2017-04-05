@@ -434,7 +434,7 @@ namespace Kentor.AuthServices.Tests.Owin
                 DestinationUrl = new Uri("https://sp.example.com/AuthServices/Logout"),
                 RelayState = relayState,
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url,
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url,
                 Issuer = new EntityId("https://idp.example.com")
             };
             var requestUri = Saml2Binding.Get(Saml2BindingType.HttpRedirect).Bind(response).Location;
@@ -475,7 +475,7 @@ namespace Kentor.AuthServices.Tests.Owin
                 NameId = new Saml2NameIdentifier("NameId"),
                 Issuer = new EntityId("https://idp.example.com"),
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url
             };
 
             var url = Saml2Binding.Get(Saml2BindingType.HttpRedirect)
@@ -519,7 +519,7 @@ namespace Kentor.AuthServices.Tests.Owin
                 NameId = new Saml2NameIdentifier("NameId"),
                 Issuer = new EntityId("https://idp.example.com"),
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url
             };
 
             var url = Saml2Binding.Get(Saml2BindingType.HttpRedirect)

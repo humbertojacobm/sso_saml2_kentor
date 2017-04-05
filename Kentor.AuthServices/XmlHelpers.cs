@@ -262,7 +262,7 @@ namespace Kentor.AuthServices
             foreach (var keyIdentifier in signingKeys)
             {
                 var key = ((AsymmetricSecurityKey)keyIdentifier.CreateKey())
-                .GetAsymmetricAlgorithm(SignedXml.XmlDsigRSASHA1Url, false);
+                .GetAsymmetricAlgorithm(AlgorithmConstants.XmlDsigRSASHA1Url, false);
 
                 if (signedXml.CheckSignature(key))
                 {
@@ -283,12 +283,12 @@ namespace Kentor.AuthServices
         }
 
         private static readonly Lazy<object> rsaSha256Algorithm = 
-            new Lazy<object>(() => CryptoConfig.CreateFromName(Options.RsaSha256Uri));
+            new Lazy<object>(() => CryptoConfig.CreateFromName(AlgorithmConstants.XmlDsigRSASHA256Url));
 
         [ExcludeFromCodeCoverage]
         private static void CheckSha256Support(SignedXml signedXml)
         {
-            if (signedXml.SignatureMethod == Options.RsaSha256Uri
+            if (signedXml.SignatureMethod == AlgorithmConstants.XmlDsigRSASHA256Url
                 && rsaSha256Algorithm.Value == null)
             {
                 throw new InvalidSignatureException("SHA256 signatures require the algorithm to be registered at the process level. Upgrade to .Net 4.6.2 or call Kentor.AuthServices.Configuration.Options.GlobalEnableSha256XmlSignatures() on startup to register.");
@@ -585,7 +585,7 @@ namespace Kentor.AuthServices
             {
                 return rsaSha256Name;
             }
-            return SignedXml.XmlDsigRSASHA1Url;
+            return AlgorithmConstants.XmlDsigRSASHA1Url;
         }
 
         internal static readonly IEnumerable<string> DigestAlgorithms =

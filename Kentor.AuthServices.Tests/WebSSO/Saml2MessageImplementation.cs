@@ -27,7 +27,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
 
         public X509Certificate2 SigningCertificate { get; set; }
 
-        public string SigningAlgorithm { get; set; } = SignedXml.XmlDsigRSASHA256Url;
+        public string SigningAlgorithm { get; set; } = AlgorithmConstants.XmlDsigRSASHA256Url;
 
         public EntityId Issuer { get; set; }
     }

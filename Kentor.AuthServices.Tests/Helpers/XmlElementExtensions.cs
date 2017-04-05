@@ -32,7 +32,7 @@ namespace Kentor.AuthServices.Tests.Helpers
             return xmlElement.IsSignedByAny(
                 Enumerable.Repeat(new X509RawDataKeyIdentifierClause(certificate), 1),
                 false,
-                SignedXml.XmlDsigRSASHA1Url);
+                AlgorithmConstants.XmlDsigRSASHA1Url);
         }
     }
 }

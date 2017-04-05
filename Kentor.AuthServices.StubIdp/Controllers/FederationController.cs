@@ -23,7 +23,7 @@ namespace Kentor.AuthServices.StubIdp.Controllers
         {
             return MetadataModel.CreateFederationMetadata().ToXmlString(
                 CertificateHelper.SigningCertificate,
-                SignedXml.XmlDsigRSASHA256Url);
+                AlgorithmConstants.XmlDsigRSASHA256Url);
         }
 
         public ActionResult BrowserFriendly()

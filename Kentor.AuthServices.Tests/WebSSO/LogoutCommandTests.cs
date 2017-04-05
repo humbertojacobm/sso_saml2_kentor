@@ -311,7 +311,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
                 Issuer = new EntityId("https://idp.example.com"),
                 InResponseTo = new Saml2Id(),
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url,
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url,
                 RelayState = relayState
             };
 
@@ -412,7 +412,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
                 SigningCertificate = SignedXmlHelper.TestCert,
                 NameId = new Saml2NameIdentifier("NameId"),
                 SessionIndex = "SessionID",
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url
             };
 
             var bindResult = Saml2Binding.Get(Saml2BindingType.HttpRedirect)
@@ -489,7 +489,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
                 SigningCertificate = SignedXmlHelper.TestCert,
                 NameId = new Saml2NameIdentifier("NameId"),
                 SessionIndex = "SessionID",
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url
             };
 
             var xml = XmlHelpers.FromString(request.ToXml());
@@ -526,7 +526,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
                 DestinationUrl = new Uri("http://sp.example.com/path/AuthServices/logout"),
                 Issuer = new EntityId("https://idp.example.com"),
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url, // Ignored
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url, // Ignored
                 NameId = new Saml2NameIdentifier("NameId"),
                 SessionIndex = "SessionID"
             };
@@ -548,7 +548,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
                 null);
 
             var options = StubFactory.CreateOptions();
-            options.SPOptions.MinIncomingSigningAlgorithm = SignedXml.XmlDsigRSASHA384Url;
+            options.SPOptions.MinIncomingSigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA384Url;
             options.SPOptions.ServiceCertificates.Add(SignedXmlHelper.TestCert);
 
             CommandFactory.GetCommand(CommandFactory.LogoutCommandName)
@@ -603,7 +603,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
                 DestinationUrl = new Uri("http://sp.example.com/path/AuthServices/logout"),
                 Issuer = new EntityId("https://idp.example.com"),
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url,
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url,
                 NameId = new Saml2NameIdentifier("NameId"),
                 SessionIndex = "SessionID"
             };
@@ -656,7 +656,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
                 Issuer = new EntityId("https://idp.example.com"),
                 InResponseTo = new Saml2Id(),
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url
             };
 
             var bindResult = Saml2Binding.Get(Saml2BindingType.HttpRedirect)
@@ -683,7 +683,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
                 Issuer = new EntityId("https://idp.example.com"),
                 InResponseTo = new Saml2Id(),
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url,
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url,
             };
 
             var bindResult = Saml2Binding.Get(Saml2BindingType.HttpRedirect)
@@ -910,7 +910,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
                 Issuer = new EntityId("https://idp.example.com"),
                 InResponseTo = new Saml2Id(),
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url,
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url,
                 RelayState = null
             };
 
@@ -945,7 +945,7 @@ namespace Kentor.AuthServices.Tests.WebSSO
                 Issuer = new EntityId("https://idp.example.com"),
                 InResponseTo = new Saml2Id(),
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url,
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url,
                 RelayState = null
             };
 

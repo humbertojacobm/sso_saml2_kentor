@@ -37,7 +37,7 @@ namespace Kentor.AuthServices.Tests.WebSso
             var options = StubFactory.CreateOptions();
             options.SPOptions.DiscoveryServiceUrl = new Uri("http://ds.example.com");
             options.SPOptions.AuthenticateRequestSigningBehavior = SigningBehavior.Always;
-            options.SPOptions.OutboundSigningAlgorithm = SignedXml.XmlDsigRSASHA384Url;
+            options.SPOptions.OutboundSigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA384Url;
             options.SPOptions.ServiceCertificates.Add(new ServiceCertificate()
             {
                 Certificate = SignedXmlHelper.TestCertSignOnly,
@@ -55,7 +55,7 @@ namespace Kentor.AuthServices.Tests.WebSso
             payloadXml.DocumentElement.FirstChild.LocalName.Should().Be("Signature");
             payloadXml.DocumentElement.FirstChild["KeyInfo"].Should().NotBeNull();
             payloadXml.DocumentElement.FirstChild["SignedInfo"]["SignatureMethod"].GetAttribute("Algorithm")
-                .Should().Be(SignedXml.XmlDsigRSASHA384Url);
+                .Should().Be( AlgorithmConstants.XmlDsigRSASHA384Url);
             payloadXml.DocumentElement.RemoveChild("Signature", SignedXml.XmlDsigNamespaceUrl);
 
             // Ignore the ID attribute, it is just filled with a GUID that can't be easily tested.

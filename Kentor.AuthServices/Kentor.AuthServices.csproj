@@ -52,6 +52,7 @@
     <Compile Include="..\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="AlgorithmConstants.cs" />
     <Compile Include="AuthServicesClaimTypes.cs" />
     <Compile Include="ClaimsExtensions.cs" />
     <Compile Include="Configuration\ArtifactResolutionServiceCollection.cs" />

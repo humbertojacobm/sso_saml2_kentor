@@ -84,9 +84,9 @@ namespace Kentor.AuthServices.Tests
             // in authservices are rsa-sha256 and sha256. Ensure AuthServices
             // defaults are used and not SignedXml/.NET defaults.
             signature["SignedInfo"]["SignatureMethod"].GetAttribute("Algorithm")
-                .Should().Be(SignedXml.XmlDsigRSASHA256Url);
+                .Should().Be(AlgorithmConstants.XmlDsigRSASHA256Url);
             signature["SignedInfo"]["Reference"]["DigestMethod"].GetAttribute("Algorithm")
-                .Should().Be(SignedXml.XmlDsigSHA256Url);
+                .Should().Be(AlgorithmConstants.XmlDsigSHA256Url);
 
             var signedXml = new SignedXml(xmlDoc);
             signedXml.LoadXml(signature);
@@ -385,7 +385,7 @@ $@"<xml>
             var xmlDoc = XmlHelpers.FromString(xml);
 
             xmlDoc.DocumentElement.Invoking(x => x.IsSignedByAny(
-                Enumerable.Repeat(new StubKeyIdentifier(), 1), false, SignedXml.XmlDsigRSASHA1Url))
+                Enumerable.Repeat(new StubKeyIdentifier(), 1), false, AlgorithmConstants.XmlDsigRSASHA1Url))
                 .ShouldThrow<CryptographicException>()
                 .WithMessage("Stub*");
         }
@@ -401,7 +401,7 @@ $@"<xml>
             var reference = new Reference
             {
                 Uri = "#MyXml",
-                DigestMethod = SignedXml.XmlDsigSHA256Url
+                DigestMethod = AlgorithmConstants.XmlDsigSHA256Url
             };
             reference.AddTransform(new XmlDsigExcC14NTransform());
             reference.AddTransform(new XmlDsigEnvelopedSignatureTransform());
@@ -409,14 +409,14 @@ $@"<xml>
             sx.SigningKey = ((RSACryptoServiceProvider)SignedXmlHelper.TestCert.PrivateKey)
                 .GetSha256EnabledRSACryptoServiceProvider();
 
-            sx.SignedInfo.SignatureMethod = SignedXml.XmlDsigRSASHA1Url;
+            sx.SignedInfo.SignatureMethod = AlgorithmConstants.XmlDsigRSASHA1Url;
             sx.ComputeSignature();
             xmlDoc.DocumentElement.AppendChild(sx.GetXml());
 
             var keyClause = new X509RawDataKeyIdentifierClause(SignedXmlHelper.TestCert);
             
             xmlDoc.DocumentElement.Invoking(x =>
-            x.IsSignedByAny(Enumerable.Repeat(keyClause, 1), false, SignedXml.XmlDsigRSASHA256Url))
+            x.IsSignedByAny(Enumerable.Repeat(keyClause, 1), false, AlgorithmConstants.XmlDsigRSASHA256Url))
             .ShouldThrow<InvalidSignatureException>()
             .WithMessage("*signing*weak*");
         }
@@ -432,7 +432,7 @@ $@"<xml>
             var reference = new Reference
             {
                 Uri = "#MyXml",
-                DigestMethod = SignedXml.XmlDsigSHA1Url
+                DigestMethod = AlgorithmConstants.XmlDsigSHA1Url
             };
             reference.AddTransform(new XmlDsigExcC14NTransform());
             reference.AddTransform(new XmlDsigEnvelopedSignatureTransform());
@@ -440,14 +440,14 @@ $@"<xml>
             sx.SigningKey = ((RSACryptoServiceProvider)SignedXmlHelper.TestCert.PrivateKey)
                 .GetSha256EnabledRSACryptoServiceProvider();
 
-            sx.SignedInfo.SignatureMethod = SignedXml.XmlDsigRSASHA256Url;
+            sx.SignedInfo.SignatureMethod = AlgorithmConstants.XmlDsigRSASHA256Url;
             sx.ComputeSignature();
             xmlDoc.DocumentElement.AppendChild(sx.GetXml());
 
             var keyClause = new X509RawDataKeyIdentifierClause(SignedXmlHelper.TestCert);
 
             xmlDoc.DocumentElement.Invoking(x =>
-            x.IsSignedByAny(Enumerable.Repeat(keyClause, 1), false, SignedXml.XmlDsigRSASHA256Url))
+            x.IsSignedByAny(Enumerable.Repeat(keyClause, 1), false, AlgorithmConstants.XmlDsigRSASHA256Url))
             .ShouldThrow<InvalidSignatureException>()
             .WithMessage("*digest*weak*");
         }
@@ -462,7 +462,7 @@ $@"<xml>
 
             var signingKeys = Enumerable.Repeat(SignedXmlHelper.TestKey, 1);
 
-            xmlDoc.DocumentElement.Invoking(x => x.IsSignedByAny(signingKeys, true, SignedXml.XmlDsigRSASHA1Url))
+            xmlDoc.DocumentElement.Invoking(x => x.IsSignedByAny(signingKeys, true, AlgorithmConstants.XmlDsigRSASHA1Url))
                 .ShouldThrow<InvalidOperationException>()
                 .And.Message.Should().Be("Certificate validation enabled, but the signing key identifier is of type RsaKeyIdentifierClause which cannot be validated as a certificate.");
         }
@@ -614,7 +614,7 @@ $@"<xml>
         {
             var shortName = "sha256";
 
-            var expected = SignedXml.XmlDsigRSASHA256Url;
+            var expected = AlgorithmConstants.XmlDsigRSASHA256Url;
 
             XmlHelpers.GetFullSigningAlgorithmName(shortName)
                 .Should().Be(expected);
@@ -625,7 +625,7 @@ $@"<xml>
         {
             var shortName = "SHA256";
 
-            var expected = SignedXml.XmlDsigRSASHA256Url;
+            var expected = AlgorithmConstants.XmlDsigRSASHA256Url;
 
             XmlHelpers.GetFullSigningAlgorithmName(shortName)
                 .Should().Be(expected);
@@ -634,7 +634,7 @@ $@"<xml>
         [TestMethod]
         public void XmlHelpers_GetFullSigningAlgorithmName_DefaultsToSha256IfAvailable()
         {
-            var expected = SignedXml.XmlDsigRSASHA256Url;
+            var expected = AlgorithmConstants.XmlDsigRSASHA256Url;
 
             XmlHelpers.GetFullSigningAlgorithmName("")
                 .Should().Be(expected);
@@ -643,8 +643,8 @@ $@"<xml>
         [TestMethod]
         public void XmlHelpers_GetCorrespondingDigestAlgorithmName_Sha256()
         {
-            XmlHelpers.GetCorrespondingDigestAlgorithm(SignedXml.XmlDsigRSASHA256Url)
-                .Should().Be(SignedXml.XmlDsigSHA256Url);
+            XmlHelpers.GetCorrespondingDigestAlgorithm(AlgorithmConstants.XmlDsigRSASHA256Url)
+                .Should().Be(AlgorithmConstants.XmlDsigSHA256Url);
         }
     }
 }

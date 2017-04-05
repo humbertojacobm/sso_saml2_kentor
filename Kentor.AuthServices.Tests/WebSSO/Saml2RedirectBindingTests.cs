@@ -183,7 +183,7 @@ namespace Kentor.AuthServices.Tests.WebSso
                 DestinationUrl = new Uri("http://host"),
                 MessageName = messageName,
                 SigningCertificate = SignedXmlHelper.TestCert,
-                SigningAlgorithm = SignedXml.XmlDsigRSASHA256Url
+                SigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA256Url
             };
 
             if(!string.IsNullOrEmpty(issuer))
@@ -277,7 +277,7 @@ namespace Kentor.AuthServices.Tests.WebSso
             var request = new HttpRequestData("GET", url);
 
             var options = StubFactory.CreateOptions();
-            options.SPOptions.MinIncomingSigningAlgorithm = SignedXml.XmlDsigRSASHA384Url;
+            options.SPOptions.MinIncomingSigningAlgorithm = AlgorithmConstants.XmlDsigRSASHA384Url;
 
             // Check that the created url indeed is signed with SHA256.
             url.OriginalString.Should().Contain("sha256");
